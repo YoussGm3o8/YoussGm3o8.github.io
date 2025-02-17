@@ -1,0 +1,5 @@
+ca.mcgill.ecse321.gameorganizer
+ca.mcgill.ecse321.gameorganizer.controllers
+ca.mcgill.ecse321.gameorganizer.models
+ca.mcgill.ecse321.gameorganizer.repositories
+ca.mcgill.ecse321.gameorganizer.services

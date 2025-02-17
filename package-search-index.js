@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ca.mcgill.ecse321.gameorganizer"},{"l":"ca.mcgill.ecse321.gameorganizer.controllers"},{"l":"ca.mcgill.ecse321.gameorganizer.models"},{"l":"ca.mcgill.ecse321.gameorganizer.repositories"},{"l":"ca.mcgill.ecse321.gameorganizer.services"}];updateSearchResults();
