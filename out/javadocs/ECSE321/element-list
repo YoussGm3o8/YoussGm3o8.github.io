@@ -1,0 +1,10 @@
+ca.mcgill.ecse321.gameorganizer
+ca.mcgill.ecse321.gameorganizer.config
+ca.mcgill.ecse321.gameorganizer.controllers
+ca.mcgill.ecse321.gameorganizer.dto
+ca.mcgill.ecse321.gameorganizer.exceptions
+ca.mcgill.ecse321.gameorganizer.middleware
+ca.mcgill.ecse321.gameorganizer.models
+ca.mcgill.ecse321.gameorganizer.repositories
+ca.mcgill.ecse321.gameorganizer.security
+ca.mcgill.ecse321.gameorganizer.services
