@@ -1,0 +1,21 @@
+// Core Colors
+$primary-color: #0a0a0a;
+$accent-color: #c41e3a;
+$gold-color: #d4af37;
+$text-color: #ffffff;
+$bg-color: #0a0a0a;
+
+// Typography
+$font-primary: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+$font-heading: "Manrope", sans-serif;
+
+// Transitions
+$transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Layout
+$container-width: 1200px;
+$sidebar-width: 280px;
+$content-width: calc(100% - #{$sidebar-width});
+$spacing-unit: 1rem;

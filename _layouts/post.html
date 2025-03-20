@@ -1,0 +1,36 @@
+---
+layout: single
+---
+
+<article class="post">
+  <header class="post__header">
+    <h1 class="page__title">{{ page.title }}</h1>
+    <div class="page__meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">
+        {{ page.date | date: "%B %d, %Y" }}
+      </time>
+      {% if page.categories %}
+      <span class="categories">
+        in {{ page.categories | join: ", " }}
+      </span>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="post__content">
+    {{ content }}
+  </div>
+
+  <footer class="post__footer">
+    <div class="social-share">
+      <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ page.url | absolute_url | url_encode }}" target="_blank">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ page.url | absolute_url | url_encode }}&title={{ page.title | url_encode }}" target="_blank">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </div>
+  </footer>
+</article>
+
+<script src="{{ '/assets/js/custom.js' | relative_url }}"></script>

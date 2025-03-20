@@ -1,0 +1,30 @@
+/* Button Styles */
+
+.btn-outline {
+  @apply inline-flex items-center px-6 py-3 border-2 border-accent text-accent font-medium rounded-full transition-colors hover:bg-accent hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent;
+}
+
+.btn-accent {
+  @apply inline-flex items-center px-6 py-3 bg-accent text-white font-medium rounded-full transition-colors hover:bg-accent/80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent;
+}
+
+.btn-primary {
+  @apply inline-flex items-center px-6 py-3 bg-primary text-white font-medium rounded-full transition-colors hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center px-6 py-3 bg-secondary text-white font-medium rounded-full transition-colors hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary;
+}
+
+.btn-sm {
+  @apply px-4 py-2 text-sm;
+}
+
+.btn-lg {
+  @apply px-8 py-4 text-lg;
+}
+
+/* Card Styles */
+.card {
+  @apply bg-secondary/30 rounded-xl p-6 transition-transform hover:transform hover:-translate-y-1;
+} 

@@ -1,0 +1,204 @@
+@import "variables";
+
+.post {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 2em;
+
+  &__header {
+    max-width: 1200px;
+    margin: 0 auto 2em;
+    
+    .page__title {
+      color: $gold-color;
+      font-size: 2.5em;
+      margin-bottom: 0.3em;
+    }
+    
+    .page__meta {
+      color: darken($text-color, 20%);
+      font-size: 0.9em;
+    }
+  }
+
+  &__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    font-size: 1.1em;
+    line-height: 1.8;
+
+    h2 {
+      color: $gold-color;
+      margin: 1.5em 0 0.8em;
+      font-size: 1.8em;
+    }
+
+    h3 {
+      color: lighten($gold-color, 10%);
+      margin: 1.2em 0 0.6em;
+      font-size: 1.4em;
+    }
+
+    p {
+      margin-bottom: 1.2em;
+    }
+
+    code {
+      background: rgba($gold-color, 0.1);
+      color: $gold-color;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+
+    pre {
+      background: $primary-color;
+      border: 1px solid $accent-color;
+      border-radius: 5px;
+      padding: 1em;
+      margin: 1.5em 0;
+      overflow-x: auto;
+    }
+
+    blockquote {
+      border-left: 4px solid $accent-color;
+      background: rgba($primary-color, 0.3);
+      margin: 1.5em 0;
+      padding: 1em;
+      font-style: italic;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 5px;
+      margin: 1.5em 0;
+    }
+  }
+
+  &__footer {
+    max-width: 1200px;
+    margin: 3em auto 0;
+    padding-top: 2em;
+    border-top: 1px solid $accent-color;
+
+    .social-share {
+      text-align: center;
+      
+      a {
+        color: $text-color;
+        margin: 0 0.5em;
+        
+        &:hover {
+          color: $gold-color;
+        }
+      }
+    }
+  }
+
+  .sidebar {
+    &.sticky {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+  }
+
+  &:not(.scrolled) {
+    .sidebar.sticky {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+
+// Override Minimal Mistakes default container width
+.page {
+  width: 100%;
+  padding-right: 0;
+  padding-left: 0;
+
+  @media (min-width: 80em) {
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+// Adjust main content area when sidebar is hidden
+.layout--single.post {
+  .page {
+    @media (min-width: 80em) {
+      padding-right: 0;
+      width: 100%;
+    }
+  }
+}
+
+// Page Scroll Behavior
+.scroll-page {
+  .sidebar {
+    &.sticky {
+      opacity: 1;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      width: calc(20% - 1em); // Reduced from 25% to 20%
+      transform: translateX(0);
+      
+      .author__avatar {
+        width: 150px; // Smaller avatar
+        height: 150px;
+      }
+      
+      .author__content {
+        padding: 1em 0;
+        font-size: 0.9em;
+      }
+      
+      .author__urls-wrapper {
+        font-size: 0.85em;
+      }
+    }
+  }
+
+  &.scrolled {
+    .sidebar.sticky {
+      opacity: 0;
+      width: 0;
+      margin: 0;
+      padding: 0;
+      transform: translateX(-20px);
+    }
+
+    .page {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+
+  .page {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+// Adjust content container
+.layout--single {
+  &.scroll-page {
+    display: flex;
+    flex-wrap: wrap;
+    
+    .page {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      width: calc(80% - 1em); // Adjusted to match new sidebar width
+    }
+  }
+}
+
+// Adjust main content area when sidebar is hidden
+.layout--single.scroll-page {
+  .page {
+    @media (min-width: 80em) {
+      padding-right: 0;
+      width: 100%;
+    }
+  }
+}

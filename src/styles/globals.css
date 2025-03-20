@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import component styles */
+@import './buttons.css';
+
+@layer base {
+  html, body {
+    @apply overflow-x-hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+  
+  body {
+    @apply bg-background text-light-text;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+  
+  a {
+    @apply text-accent hover:text-opacity-80 transition-all duration-300;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8 max-w-full;
+  }
+  
+  .section-title {
+    @apply text-2xl md:text-3xl font-bold mb-6 relative;
+  }
+  
+  .section-title::after {
+    @apply content-[''] absolute left-0 bottom-0 h-1 w-12 bg-accent;
+  }
+  
+  /* Fix for grid layouts that might cause overflow */
+  .grid, .flex {
+    @apply max-w-full;
+  }
+} 

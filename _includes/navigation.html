@@ -1,0 +1,16 @@
+<nav class="cool-nav">
+  <div class="nav-container">
+    <a href="/" class="nav-item {% if page.url == '/' %}active{% endif %}">
+      <i class="fas fa-home" aria-hidden="true"></i><span>Home</span>
+    </a>
+    <a href="/about/" class="nav-item {% if page.url == '/about/' %}active{% endif %}">
+      <i class="fas fa-user" aria-hidden="true"></i><span>About</span>
+    </a>
+    <a href="/projects/" class="nav-item {% if page.url == '/projects/' %}active{% endif %}">
+      <i class="fas fa-code" aria-hidden="true"></i><span>Projects</span>
+    </a>
+    <a href="/blog/" class="nav-item {% if page.url == '/blog/' %}active{% endif %}">
+      <i class="fas fa-pencil-alt" aria-hidden="true"></i><span>Blog</span>
+    </a>
+  </div>
+</nav>

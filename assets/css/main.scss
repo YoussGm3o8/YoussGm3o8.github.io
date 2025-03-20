@@ -1,0 +1,418 @@
+---
+---
+
+@import "variables";
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
+@import "minimal-mistakes";
+@import "blog";
+
+// Global Reset & Base Styles
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// Global Styles
+body {
+  background-color: $bg-color;
+  color: $text-color;
+  font-family: $font-primary;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+// Typography Enhancement
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading;
+  color: $gold-color;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 2rem 0 1rem;
+}
+
+// Layout & Container
+.page {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  
+  &__content {
+    flex: 1;
+    padding: $spacing-unit * 2;
+    max-width: $container-width;
+    margin: 0 auto;
+    margin-left: $sidebar-width;
+    width: $content-width;
+    transition: all 0.5s $transition-timing;
+    
+    @media (max-width: 768px) {
+      padding: $spacing-unit;
+      margin-left: 0;
+      width: 100%;
+    }
+
+    p, li {
+      transition: opacity 0.3s ease,
+                  transform 0.4s $transition-timing;
+    }
+  }
+}
+
+// Content Styles
+.page__content {
+  h2 {
+    border-bottom: 2px solid $accent-color;
+    padding-bottom: 0.5em;
+  }
+  
+  p {
+    margin-bottom: 1.5em;
+  }
+
+  a {
+    color: $gold-color;
+    &:hover {
+      color: lighten($gold-color, 10%);
+    }
+  }
+}
+
+// Project Cards Refinement
+.project-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba($gold-color, 0.1);
+  border-radius: 12px;
+  padding: $spacing-unit * 2;
+  margin-bottom: $spacing-unit * 2;
+  transition: all $transition-smooth;
+  
+  &:hover {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.05);
+    border-color: rgba($gold-color, 0.3);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  }
+
+  h3 {
+    color: $gold-color;
+    font-size: 1.3em;
+    margin-bottom: 0.8em;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 1.2em;
+  }
+
+  a {
+    color: $accent-color;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Header and Navigation
+.page__hero--overlay {
+  padding: 4em 0;
+  background-blend-mode: multiply;
+  background-color: $primary-color;
+  
+  .page__title {
+    color: $gold-color;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+}
+
+// Enhanced Navigation
+.cool-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: rgba($primary-color, 0.98);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba($gold-color, 0.1);
+  z-index: 1000;
+  transform: translateY(0);
+  transition: transform $transition-smooth;
+
+  &.hidden {
+    transform: translateY(-100%);
+  }
+
+  .nav-container {
+    height: 100%;
+    max-width: $container-width;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 $spacing-unit;
+    
+    .nav-item {
+      position: relative;
+      padding: 0.5rem 1rem;
+      color: $text-color;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color $transition-fast;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: $gold-color;
+        transition: all $transition-smooth;
+        transform: translateX(-50%);
+      }
+      
+      &:hover, &.active {
+        color: $gold-color;
+        
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+// Profile and Author
+.author__avatar {
+  img {
+    border: 2px solid $gold-color;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+}
+
+// Skills and Experience
+.skill-list, .experience-list {
+  list-style: none;
+  padding: 0;
+  
+  li {
+    margin-bottom: 0.5em;
+    padding-left: 1.2em;
+    position: relative;
+    
+    &:before {
+      content: "•";
+      color: $accent-color;
+      position: absolute;
+      left: 0;
+    }
+  }
+}
+
+// Smooth Scroll Behavior
+.scroll-page {
+  .sidebar {
+    position: fixed;
+    width: $sidebar-width;
+    transition: all $transition-slow;
+    opacity: 1;
+    transform: translateX(0);
+    left: 0;
+    top: 80px; // Adjust based on your header height
+    transition: all 0.5s $transition-timing;
+    
+    &.hidden {
+      opacity: 0;
+      transform: translateX(-$sidebar-width);
+    }
+  }
+
+  .page__content {
+    margin-left: auto;
+    width: $content-width;
+    transition: all $transition-slow;
+    
+    &.expanded {
+      width: 100%;
+    }
+  }
+
+  &.content-expanded {
+    .page__content {
+      margin-left: 0;
+      width: 100%;
+      
+      p, li {
+        animation: textShuffle 0.5s $transition-timing;
+      }
+    }
+  }
+}
+
+// Text shuffle animation
+@keyframes textShuffle {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  20% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive Design
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 $spacing-unit;
+  }
+
+  .page__content {
+    margin-left: 0;
+    width: 100%;
+    padding: $spacing-unit;
+  }
+  
+  .scroll-page .sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .scroll-page {
+    .sidebar {
+      display: none;
+    }
+    
+    .page__content {
+      width: 100%;
+    }
+  }
+  
+  .project-card {
+    padding: $spacing-unit;
+  }
+
+  .page__hero--overlay {
+    padding: 3em 0;
+  }
+  
+  h1 {
+    font-size: 1.8em;
+  }
+
+  .cool-nav {
+    .nav-container {
+      gap: 1rem;
+    }
+    
+    .nav-item {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8em;
+    }
+  }
+}
+
+// Responsive Navigation
+@media (max-width: 600px) {
+  .cool-nav {
+    .nav-container {
+      padding: 0 1rem;
+    }
+    
+    .nav-item {
+      padding: 0.5rem;
+      
+      span {
+        font-size: 0.8em;
+      }
+    }
+  }
+}
+
+// Print Styles
+@media print {
+  .project-card {
+    break-inside: avoid;
+    border: 1px solid #ddd;
+    box-shadow: none;
+  }
+}
+
+// Override Minimal Mistakes Elements
+.masthead {
+  background: $primary-color;
+  border-bottom: 1px solid $accent-color;
+}
+
+.page__footer {
+  background: $primary-color;
+  color: $text-color;
+  border-top: 1px solid $accent-color;
+  
+  .social-icons .fas,
+  .social-icons .fab,
+  .social-icons .far,
+  .social-icons .fal {
+    color: $text-color;
+    &:hover {
+      color: $gold-color;
+    }
+  }
+}
+
+// Update Masthead Title Colors
+.site-title {
+  color: $text-color !important;
+  &:hover {
+    color: $gold-color !important;
+  }
+}
+
+// Update Search Button Colors
+.search__toggle {
+  color: $text-color;
+  &:hover {
+    color: $gold-color;
+  }
+}
+
+// Update Navigation Dropdown Colors
+.greedy-nav {
+  background: $primary-color;
+  
+  a {
+    color: $text-color;
+    &:hover {
+      color: $gold-color;
+    }
+  }
+  
+  .visible-links {
+    background: $primary-color;
+  }
+  
+  .hidden-links {
+    background: $primary-color;
+    border: 1px solid $accent-color;
+    
+    a {
+      color: $text-color;
+      &:hover {
+        color: $gold-color;
+        background: lighten($primary-color, 10%);
+      }
+    }
+  }
+}
+
+// Update Page Hero
+.page__hero--overlay {
+  background-color: $primary-color !important;
+}
