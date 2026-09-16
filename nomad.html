@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NOMAD Case Study — Youssef El Kesti</title>
+  <meta name="description" content="NOMAD case study: C++20 vehicle-control architecture, MAVSDK/MAVLink integration, ArduPilot, Mission Planner, ROS 2, and long-range UAV operations.">
+  <meta name="theme-color" content="#090c10">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="NOMAD Case Study — Youssef El Kesti">
+  <meta property="og:description" content="Engineering a reusable C++ control boundary for long-range autonomous UAV operations.">
+  <meta property="og:url" content="https://youssgm3o8.github.io/nomad.html">
+  <link rel="canonical" href="https://youssgm3o8.github.io/nomad.html">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="case-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" data-header>
+    <div class="shell nav-wrap">
+      <a class="brand" href="index.html" aria-label="Back to Youssef El Kesti portfolio"><span class="brand-mark" aria-hidden="true">YE</span><span class="brand-name">Youssef El Kesti</span></a>
+      <nav class="site-nav case-nav"><a href="index.html#work">← Portfolio</a><a href="https://github.com/YoussGm3o8/NOMAD" target="_blank" rel="noreferrer">Source ↗</a></nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="case-hero shell">
+      <div class="case-intro reveal">
+        <p class="eyebrow"><span class="status-dot"></span> CASE STUDY / MCGILL AERIAL DESIGN</p>
+        <h1>NOMAD</h1>
+        <p class="case-deck">A C++20 vehicle-control core and client architecture for long-range autonomous UAV operations.</p>
+        <div class="tags"><span>C++20</span><span>MAVLink</span><span>MAVSDK</span><span>ArduPilot</span><span>Mission Planner</span><span>ROS 2</span><span>LTE / Tailscale</span></div>
+      </div>
+      <aside class="case-facts reveal">
+        <div><span>Role</span><strong>Senior Avionics Lead / software contributor</strong></div>
+        <div><span>Context</span><strong>AEAC SUAS 2027 preparation</strong></div>
+        <div><span>Current state</span><strong>Active migration + qualification</strong></div>
+        <div><span>Repository</span><a href="https://github.com/YoussGm3o8/NOMAD" target="_blank" rel="noreferrer">YoussGm3o8/NOMAD ↗</a></div>
+      </aside>
+    </section>
+
+    <section class="case-band">
+      <div class="shell case-grid">
+        <div class="reveal">
+          <p class="kicker">01 / The problem</p>
+          <h2>One aircraft can have many software clients. It should not have many competing command owners.</h2>
+        </div>
+        <div class="case-prose reveal">
+          <p>NOMAD is being refactored around a reusable C++ control core so operator interfaces, ROS 2 adapters, perception tools, and competition-specific integrations can share one validated vehicle boundary instead of each owning its own flight-control path.</p>
+          <p>ArduPilot remains responsible for stabilization, EKF, low-level navigation, motor control, and failsafes. NOMAD sits above that layer: high-level mission behavior, command validation, telemetry state, safety policy, and outcome tracking.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell">
+      <div class="section-heading reveal"><div><p class="kicker">02 / Architecture</p><h2>Dependencies point inward.</h2></div><p>Clients submit typed requests or validated observations. The reusable core owns high-level behavior; MAVSDK/MAVLink is the vehicle transport boundary.</p></div>
+      <div class="case-architecture reveal">
+        <div class="arch-group">
+          <span class="micro">OPERATORS + CLIENTS</span>
+          <div class="arch-items"><span>Mission Planner</span><span>CLI</span><span>ROS 2</span><span>Python CV / ML</span></div>
+        </div>
+        <div class="arch-flow">↓ typed requests / observations</div>
+        <div class="arch-runtime">
+          <span class="micro">NOMAD C++ RUNTIME</span>
+          <h3>Single command owner</h3>
+          <div class="runtime-grid"><span>Telemetry model</span><span>Mission state</span><span>Safety / traffic</span><span>Vehicle validation</span></div>
+        </div>
+        <div class="arch-flow">↓ verified vehicle operations</div>
+        <div class="arch-items arch-bottom"><span>MAVSDK / MAVLink</span><span>ArduPilot</span><span>Aircraft</span></div>
+        <div class="arch-side">
+          <span class="micro">OPTIONAL APPLICATION MODULE</span>
+          <strong>AEAC 2027 integration</strong>
+          <p>Owns competition wire protocol and translates external traffic into generic observations. It does not bypass the command owner.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section case-dark">
+      <div class="shell">
+        <div class="section-heading reveal"><div><p class="kicker">03 / What exists today</p><h2>A migration in progress, not a finished-product claim.</h2></div><p>The public repository explicitly separates implemented pieces from qualification gates and planned competition work.</p></div>
+        <div class="status-grid">
+          <article class="status-card reveal"><span class="status-icon done">✓</span><h3>Working core</h3><p>Tested C++ core, UDP MAVLink implementation, basic Copter operations, command primitives, safety/watchdog/fence/payload building blocks, and client adapters.</p></article>
+          <article class="status-card reveal"><span class="status-icon done">✓</span><h3>MAVSDK cutover direction</h3><p>The pinned MAVSDK fork is the production transport direction for ArduPilot semantics, with NOMAD retaining validation, safety policy, deadlines, and outcome authority.</p></article>
+          <article class="status-card reveal"><span class="status-icon progress">→</span><h3>Qualification gates</h3><p>Persistent runtime ownership, live Docker/SITL/ROS startup, competition traffic/telemetry, and some deployment wiring remain active qualification work.</p></article>
+          <article class="status-card reveal"><span class="status-icon progress">→</span><h3>Aircraft expansion</h3><p>QuadPlane/ArduPlane mission and transition semantics still require implementation and flight-specific evidence before Task 1 claims are complete.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell">
+      <div class="case-grid">
+        <div class="reveal"><p class="kicker">04 / My contribution</p><h2>Refactoring the ground-control stack around clearer ownership boundaries.</h2></div>
+        <div class="case-prose reveal">
+          <ul class="case-list">
+            <li><strong>C++ core:</strong> refactoring the ground-control system toward a modern C++ control engine that supports multi-platform autonomous missions and live telemetry.</li>
+            <li><strong>MAVSDK fork:</strong> maintaining custom ArduPilot command and telemetry behavior required by the project.</li>
+            <li><strong>Long-range networking:</strong> integrating non-line-of-sight communication workflows over LTE/Tailscale without treating VPN reachability as a substitute for vehicle safety policy.</li>
+            <li><strong>System integration:</strong> connecting ArduPilot, Mission Planner, ROS 2, companion-compute/perception work, and deployment tooling around explicit interfaces.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell">
+      <div class="section-heading reveal"><div><p class="kicker">05 / Engineering decisions</p><h2>Keep the core reusable. Put event-specific behavior at the edge.</h2></div></div>
+      <div class="decision-grid">
+        <article class="decision-card reveal"><span>01</span><h3>One active writer</h3><p>Multiple clients may observe, but incompatible vehicle requests are serialized or rejected around one command owner.</p></article>
+        <article class="decision-card reveal"><span>02</span><h3>ArduPilot owns flight control</h3><p>NOMAD supervises high-level behavior rather than reimplementing stabilization, EKF, or low-level flight transitions.</p></article>
+        <article class="decision-card reveal"><span>03</span><h3>Competition logic stays modular</h3><p>AEAC-specific protocol and scoring behavior live in an optional application module, not in generic vehicle types.</p></article>
+        <article class="decision-card reveal"><span>04</span><h3>Observations ≠ commands</h3><p>Perception and external systems provide validated observations; they do not directly steer the vehicle around the core.</p></article>
+      </div>
+    </section>
+
+    <section class="case-cta shell reveal">
+      <p class="kicker">SOURCE</p>
+      <h2>The repository documents the implementation, migration gates, architecture, and open decisions.</h2>
+      <div class="contact-actions">
+        <a class="button button-primary" href="https://github.com/YoussGm3o8/NOMAD" target="_blank" rel="noreferrer">Open NOMAD on GitHub ↗</a>
+        <a class="button button-ghost" href="index.html#work">Back to portfolio</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-inner"><p>© <span data-year>2026</span> Youssef El Kesti</p><div><a href="index.html">Portfolio</a><a href="https://github.com/YoussGm3o8/NOMAD" target="_blank" rel="noreferrer">NOMAD source</a></div></div></footer>
+  <script src="script.js" defer></script>
+</body>
+</html>
